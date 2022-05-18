@@ -9,7 +9,14 @@ class MyArray {
   push(item) {
     this.data[this.length] = item;
     this.length++;
-    return this.length; // Arrays in JS return the Array's length when "push" is used.
+    return this.length; // Arrays in JS returns the Array's length when "push" is used.
+  }
+  // challenge: make pop method
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
   }
 }
 
