@@ -18,6 +18,16 @@ class MyArray {
     this.length--;
     return lastItem;
   }
+  // remove the item at position index
+  myDelete(index) {
+    const deletedItem = this.data[index];
+    for (let i = index; i <= this.length - 1; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
+    return deletedItem;
+  }
 }
 
 const myArray = new MyArray();
