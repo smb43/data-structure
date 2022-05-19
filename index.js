@@ -11,22 +11,24 @@ class MyArray {
     this.length++;
     return this.length; // Arrays in JS returns the Array's length when "push" is used.
   }
-  // challenge: make pop method
-  pop() {
-    const lastItem = this.data[this.length - 1];
-    delete this.data[this.length - 1];
-    this.length--;
-    return lastItem;
-  }
-  // remove the item at position index
-  myDelete(index) {
-    const deletedItem = this.data[index];
+  // Shift item's index
+  shiftItem(index) {
     for (let i = index; i <= this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }
+  }
+  removeItemAtPosition(index) {
+    const item = this.data[index];
+    this.shiftItem(index);
     delete this.data[this.length - 1];
     this.length--;
-    return deletedItem;
+    return item;
+  }
+  // remove the last element at the "Array"
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    this.removeItemAtPosition(this.length - 1);
+    return lastItem;
   }
 }
 
