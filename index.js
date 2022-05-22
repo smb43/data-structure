@@ -1,51 +1,32 @@
-class MyArray {
-  constructor() {
-    this.length = 0;
-    this.data = {};
+class HashTable {
+  constructor(size) {
+    this.data = new Array(size);
   }
-  getItemAtPosition(index) {
-    return this.data[index];
-  }
-  // Add Item To The End
-  push(item) {
-    this.data[this.length] = item;
-    this.length++;
-    return this.length; // Arrays in JS returns the Array's length when "push" is used.
-  }
-  // Add Item To The Beginning
-  unShift(item) {
-    for(let i = this.length; i >= 0; i--) {
-      this.data[i] = this.data[i - 1];
+  hashMethod(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * i) % this.data.length;
     }
-    this.data[0] = item;
-    this.length++;
-    return this.length;
+    return hash;
   }
-  // Shift item's index
-  shiftItem(index) {
-    for (let i = index; i <= this.length - 1; i++) {
-      this.data[i] = this.data[i + 1];
+  set(key, value) {
+    const address = this.hashMethod(key);
+    if (!this.data[address]) {
+      this.data[address] = [];
     }
+    this.data[address].push([key, value]);
+    return this.data;
   }
-  removeItemAtPosition(index) {
-    const item = this.data[index];
-    this.shiftItem(index);
-    delete this.data[this.length - 1];
-    this.length--;
-    return item;
-  }
-  // Remove Last Item
-  pop() {
-    const lastItem = this.data[this.length - 1];
-    this.removeItemAtPosition(this.length - 1);
-    return lastItem;
-  }
-  // Remove First Item
-  shift() {
-    const firstItem = this.data[0];
-    this.removeItemAtPosition(0);
-    return firstItem;
+  get(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) return currentBucket[i][1];
+      }
+    }
+    return `El elemento ${key} no existe`;
   }
 }
 
-const myArray = new MyArray();
+const myHashTable = new HashTable(50);
