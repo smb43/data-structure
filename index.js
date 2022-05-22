@@ -27,6 +27,19 @@ class HashTable {
     }
     return `El elemento ${key} no existe`;
   }
+  delete(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          currentBucket.splice(i, 1);
+          return this.data;
+        }
+      }
+    }
+    return `El elemento ${key} no existe en esta Hash Table`;
+  }
 }
 
 const myHashTable = new HashTable(50);
