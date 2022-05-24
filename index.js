@@ -40,6 +40,18 @@ class HashTable {
     }
     return `El elemento ${key} no existe en esta Hash Table`;
   }
+  getAllKeys() {
+    let keys = [];
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        this.data[i].map((currentBucket) => keys.push(currentBucket[0]));
+      }
+    }
+    if (keys) {
+      keys = `En este momento NO hay elementos dentro de la Hash Table`
+    }
+    return keys;
+  }
 }
 
 const myHashTable = new HashTable(50);
