@@ -47,8 +47,8 @@ class HashTable {
         this.data[i].map((currentBucket) => keys.push(currentBucket[0]));
       }
     }
-    if (keys) {
-      keys = `En este momento NO hay elementos dentro de la Hash Table`
+    if (keys.length === 0) {
+      keys = `En este momento NO hay elementos dentro de la Hash Table`;
     }
     return keys;
   }
