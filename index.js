@@ -15,10 +15,18 @@ class MySinglyLinkedList {
     this.length = 1;
   }
   append(value) {
-    const nextNode = new Node(value);
-    this.tail.next = nextNode;
-    this.tail = nextNode;
+    const lastNode = new Node(value);
+    this.tail.next = lastNode;
+    this.tail = lastNode;
     this.length++;
+    return this;
+  }
+  prepend(value) {
+    const firstNode = new Node(value);
+    firstNode.next = this.head;
+    this.head = firstNode;
+    this.length++;
+    return this;
   }
 }
 
