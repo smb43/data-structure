@@ -14,6 +14,12 @@ class MySinglyLinkedList {
     this.tail = this.head;
     this.length = 1;
   }
+  append(value) {
+    const nextNode = new Node(value);
+    this.tail.next = nextNode;
+    this.tail = nextNode;
+    this.length++;
+  }
 }
 
 let mySinglylinkedList = new MySinglyLinkedList(1);
