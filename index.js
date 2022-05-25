@@ -48,13 +48,25 @@ class MySinglyLinkedList {
     return this;
   }
   getNode(index) {
-    const counter = 0;
-    const currentNode = this.head;
+    let counter = 0;
+    let currentNode = this.head;
     while (counter !== index) {
       currentNode = currentNode.next;
       counter++;
     }
     return currentNode;
+  }
+  search(value) {
+    let index = 0;
+    let currentNode = this.head;
+    while (index < this.length) {
+      if (currentNode.value === value) {
+        return currentNode;
+      }
+      currentNode = currentNode.next;
+      index++;
+    }
+    return `the value: ${value} does not exist in this Linked List`;
   }
 }
 
