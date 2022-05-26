@@ -68,6 +68,22 @@ class MySinglyLinkedList {
     }
     return `the value: ${value} does not exist in this Linked List`;
   }
+  remove(value) {
+    let index = 0;
+    let currentNode = this.head;
+    while (index < this.length) {
+      if (currentNode.value === value) {
+        const prevNode = this.getNode(index - 1);
+        const nodeToRemove = currentNode;
+        prevNode.next = currentNode.next;
+        this.length--;
+        return nodeToRemove;
+      }
+      currentNode = currentNode.next;
+      index++;
+    }
+    return `the value: ${value} does not exist in this Linked List`;
+  }
 }
 
 let mySinglylinkedList = new MySinglyLinkedList(1);
