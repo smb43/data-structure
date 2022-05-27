@@ -76,6 +76,37 @@ class MyDoublyLinkedList {
     }
     return `Sorry, the value you're looking for does not exist`;
   }
+  remove(value) {
+    let position = 0;
+    let currentNode = this.head;
+    let prevNode;
+    let nextNode;
+
+    while (position < this.length) {
+
+      if (value === currentNode.value) {
+        prevNode = currentNode.prev;
+        nextNode = currentNode.next;
+
+        if (currentNode == this.head) {
+          nextNode.prev = null;
+          this.head = nextNode;
+        } else if (currentNode == this.tail) {
+          prevNode.next = null;
+          this.tail = prevNode;
+        } else {
+          prevNode.next = nextNode;
+          nextNode.prev = prevNode;
+        }
+        this.length--;
+        return this;
+      }
+      
+      currentNode = currentNode.next;
+      position++;
+    }
+    return `the index you want to remove does not exist`;
+  }
 }
 
 const myDoublyLinkedList = new MyDoublyLinkedList(1);
