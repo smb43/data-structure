@@ -9,7 +9,7 @@ class Node {
 class MyDoublyLinkedList {
   constructor(value) {
     this.head = {
-      value,
+      value: value,
       next: null,
       prev: null,
     };
@@ -63,6 +63,18 @@ class MyDoublyLinkedList {
     newNode.next = nextNode;
     this.length++;
     return this;
+  }
+  search(value) {
+    let position = 0;
+    let currentNode = this.head;
+    while (position < this.length) {
+      if (value === currentNode.value) {
+        return currentNode;
+      }
+      currentNode = currentNode.next;
+      position++;
+    }
+    return `Sorry, the value you're looking for does not exist`;
   }
 }
 
