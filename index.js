@@ -24,6 +24,14 @@ class MyDoublyLinkedList {
     this.length++;
     return this;
   }
+  prepend(value) {
+    const newNode = new Node(value);
+    newNode.next = this.head;
+    this.head.prev = newNode;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
 }
 
 const myDoublyLinkedList = new MyDoublyLinkedList(1);
