@@ -23,6 +23,19 @@ class Queue {
     this.length++;
     return this;
   }
+  dequeue() {
+    if (this.length === 1) {
+      this.first = null;
+      this.last = null;
+    } else {
+      this.first = this.first.next;
+    }
+    this.length--;
+    return this;
+  }
+  peek() {
+    return this.first;
+  }
 }
 
 const myQueue = new Queue();
