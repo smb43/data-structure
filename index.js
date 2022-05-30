@@ -5,39 +5,24 @@ class Node {
   }
 }
 
-class Stack {
+class Queue {
   constructor() {
-    this.top = null;
-    this.bottom = null;
+    this.first = null;
+    this.last = null;
     this.length = 0;
   }
-  peek() {
-    return this.top;
-  }
-  push(value) {
+  enqueue(value) {
     const newNode = new Node(value);
     if (this.length === 0) {
-      this.top = newNode;
-      this.bottom = newNode;
+      this.first = newNode;
+      this.last = newNode;
     } else {
-      const holdingPointer = this.top;
-      this.top = newNode;
-      this.top.next = holdingPointer;
+      this.last.next = newNode;
+      this.last = newNode;
     }
     this.length++;
     return this;
   }
-  pop() {
-    if (this.length === 0) return `the Stack is empty`;
-    if (this.length === 1) {
-      this.top = null;
-      this.bottom = null;
-    } else {
-      this.top = this.top.next;
-    }
-    this.length--;
-    return this;
-  }
 }
 
-const myStack = new Stack();
+const myQueue = new Queue();
