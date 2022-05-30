@@ -24,6 +24,7 @@ class Queue {
     return this;
   }
   dequeue() {
+    if(this.length === 0) return `there's no element in this Queue`
     if (this.length === 1) {
       this.first = null;
       this.last = null;
