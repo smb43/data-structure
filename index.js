@@ -1,42 +1,53 @@
 class Node {
   constructor(value) {
+    this.right = null;
+    this.left = null;
     this.value = value;
-    this.next = null;
   }
 }
 
-class Queue {
+class BinarySearchTree {
   constructor() {
-    this.first = null;
-    this.last = null;
-    this.length = 0;
+    this.root = null;
   }
-  enqueue(value) {
+  insert(value) {
     const newNode = new Node(value);
-    if (this.length === 0) {
-      this.first = newNode;
-      this.last = newNode;
+    if (this.root === null) {
+      this.root = newNode;
+      return this;
     } else {
-      this.last.next = newNode;
-      this.last = newNode;
+      let currentNode = this.root;
+      while (true) {
+        if (value < currentNode.value) {
+          if (!currentNode.left) {
+            currentNode.left = newNode;
+            return this;
+          }
+          currentNode = currentNode.left;
+        } else {
+          if (!currentNode.right) {
+            currentNode.right = newNode;
+            return this;
+          }
+          currentNode = currentNode.right;
+        }
+      }
     }
-    this.length++;
-    return this;
   }
-  dequeue() {
-    if(this.length === 0) return `there's no element in this Queue`
-    if (this.length === 1) {
-      this.first = null;
-      this.last = null;
-    } else {
-      this.first = this.first.next;
+  search(value, currentNode = this.root) {
+    if (currentNode) {
+      if (value === currentNode.value) {
+        return currentNode;
+      }
+      if (value < currentNode.value) {
+        return this.search(value, currentNode.left);
+      }
+      if (value > currentNode.value) {
+        return this.search(value, currentNode.right);
+      }
     }
-    this.length--;
-    return this;
-  }
-  peek() {
-    return this.first;
+    return `the value: ${value} doesn't exist`;
   }
 }
 
-const myQueue = new Queue();
+const myTree = new BinarySearchTree();
